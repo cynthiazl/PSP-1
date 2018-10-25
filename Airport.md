@@ -262,7 +262,7 @@ public class Buscador extends JFrame {
 		informo.setForeground(Color.RED);
 		informo.setBounds(324, 128, 270, 20);
 		contentPane.add(informo);
-	
+
 		// Recojo el texto
 		textAeropuerto = new JTextField();
 		textAeropuerto.setBounds(324, 128, 270, 20);
@@ -288,25 +288,28 @@ public class Buscador extends JFrame {
 				} else {
 
 					Desktop browser = Desktop.getDesktop();
-					String url = "https://www.google.com/maps/place/{name}/@{latitude},{longitude},15z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d38.2821999!4d-0.558156?hl=es";
+					String url = "https://www.google.com/maps/place/{name}/@{latitude
+					{longitude},15z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d38.2821999!4d-0.558156?hl=es";   
 
 					for (Airport aeropuerto : airports) {
 
-						if (comboBoxResultado.getSelectedItem().equals(aeropuerto.getName().replace("\"", ""))) {
-							
-							try {
-								
-								url = url.replace("{name}", aeropuerto.getName().replace("\"", "").replaceAll(" ", "+"));
-								url = url.replace("{latitude}", Double.toString(aeropuerto.getLatitude()));
-								url = url.replace("{longitude}", Double.toString(aeropuerto.getLongitude()));
-								
-								browser.browse(new URI(url));
-								
-								System.out.println(url);
+					    if (comboBoxResultado.getSelectedItem().equals(aeropuerto.getName().replace("\"", ""))) {
 
-							} catch (Exception e2) {
-								// TODO: handle exception
-								JOptionPane.showMessageDialog(null, "Ha ocurrido un error insesperado: " + e2.getMessage());
+						try {
+						    url = url.replace("{name}",
+							   aeropuerto.getName().replace("\"", "").replaceAll(" ", "+"));
+						    url = url.replace("{latitude}", Double.toString(aeropuerto.getLatitude()));
+						    url = url.replace("{longitude}", Double.toString(aeropuerto.getLongitude()));
+						    
+					            browser.browse(new URI(url));
+
+						    System.out.println(url);
+
+						} catch (Exception e2) {
+							// TODO: handle exception
+							
+							JOptionPane.showMessageDialog(null,
+								"Ha ocurrido un error insesperado: " +e2.getMessage());
 							}
 						}
 					}
@@ -323,7 +326,7 @@ public class Buscador extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				comboBoxResultado.removeAllItems();
 
 				if (textAeropuerto.getText().isEmpty()) {
@@ -336,14 +339,17 @@ public class Buscador extends JFrame {
 
 					for (Airport airport : airports) {
 
-						if ((textAeropuerto.getText().length() == 3 && textAeropuerto.getText().toLowerCase().equals(airport.getCode().toLowerCase().replace("\"", "")) || 
-							(  airport.getCity().toLowerCase().contains(textAeropuerto.getText().toLowerCase())	|| 
-							   airport.getCountry().toLowerCase().contains(textAeropuerto.getText().toLowerCase()) || 
-							   airport.getName().toLowerCase().contains(textAeropuerto.getText().toLowerCase())))) {
+					    if ((textAeropuerto.getText().length() == 3
+						   && textAeropuerto.getText().toLowerCase()
+							.equals(airport.getCode().toLowerCase().replace("\"", ""))
+						   || (airport.getCity().toLowerCase().contains(textAeropuerto.getText().toLowerCase())
+					           || airport.getCountry().toLowerCase()
+								.contains(textAeropuerto.getText().toLowerCase())
+						   || airport.getName().toLowerCase()
+								.contains(textAeropuerto.getText().toLowerCase())))) {
 
-							resultados.add(airport);
-							comboBoxResultado.addItem(airport.getName().replace("\"", ""));
-							 //System.out.println("Encontrado" + airport.getCode()+ airport.getName());
+						resultados.add(airport);
+						comboBoxResultado.addItem(airport.getName().replace("\"", ""));
 						}
 					}
 
@@ -353,22 +359,6 @@ public class Buscador extends JFrame {
 	}
 }
 
-/*
- * if (!textSeleccionado.getText().equals("")) { String resultado = "", mismoVal
- * = ""; if (textSeleccionado.getText().equals("Buscar")) {
- * 
- * for (int i = 0; i < airports.size(); i++) { if
- * (airports.get(i).toString().toUpperCase()
- * .contains(textSeleccionado.getText().toString().toUpperCase())) { resultado =
- * airports.get(i).toString(); comboBoxResultado.addItem(resultado);
- * 
- * } } btnBuscar.setText("Volver a Buscar");
- * 
- * textSeleccionado.setEditable(false); } else if
- * (btnBuscar.getText().equals("Volver a Buscar")) {
- * comboBoxResultado.removeAllItems(); btnBuscar.setText("Buscar");
- * textSeleccionado.setEditable(true); informo.setText(""); } }
- */
 ```
 **Leer el fichero**
 ```Java
@@ -400,7 +390,7 @@ public class LeoFichero {
 				//imprime datos
 				//System.out.println(datos[6]);
 				
-				Airport airport = new Airport(Integer.parseInt(datos[0]), datos[4], datos[1], datos[2], datos[3], Double.parseDouble(datos[6]), Double.parseDouble(datos[7]));
+				Airport airport = new Airport(Integer.parseInt(datos[0]), datos[4], datos[1], datos[2], datos[3], 					Double.parseDouble(datos[6]), Double.parseDouble(datos[7]));
 				
 				airports.add(airport);				
 			}
