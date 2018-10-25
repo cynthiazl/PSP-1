@@ -1,4 +1,4 @@
-###Buscador de Aeropuertos
+# Buscador de Aeropuertos
 **Página principal**
 ```Java
 import javax.swing.*;
@@ -24,18 +24,18 @@ public class PaginaPrincipal extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			
+
 			public void run() {
-				
+
 				try {
-					
+
 					PaginaPrincipal frame = new PaginaPrincipal();
 					frame.setVisible(true);
-					
+
 					ImageIcon img = new ImageIcon("avion.jpg");
 					frame.setIconImage(img.getImage());
 					frame.setResizable(false);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,8 +47,7 @@ public class PaginaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public PaginaPrincipal() {
-		
-		
+
 		setTitle("Página principal de Aeropuertos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 672, 280);
@@ -67,44 +66,42 @@ public class PaginaPrincipal extends JFrame {
 
 		ImagePanel imagePanel = new ImagePanel(new ImageIcon("aeropuerto.jpg").getImage());
 		imagePanel.setBounds(0, 0, 665, 250);
-		contentPane.add(imagePanel);	
-		
-				JButton btnBuscar = new JButton("Buscar");
-				btnBuscar.setBounds(289, 136, 86, 23);
-				imagePanel.add(btnBuscar);
-				btnBuscar.setFont(new Font("Georgia", Font.PLAIN, 16));
-				btnBuscar.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						Buscador nombre = new Buscador();
-						nombre.setVisible(true);
+		contentPane.add(imagePanel);
 
-					}
-				});
-		
-		
-		
-		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(289, 136, 86, 23);
+		imagePanel.add(btnBuscar);
+		btnBuscar.setFont(new Font("Georgia", Font.PLAIN, 16));
+		btnBuscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Buscador nombre = new Buscador();
+				nombre.setVisible(true);
+
+			}
+		});
+
 	}
 
 }
 
 class ImagePanel extends JPanel {
-	  private Image img;
-	  
-	 public ImagePanel(Image img) {
-		 
-		 this.img = img;
-		 Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-		 
-		 	setPreferredSize(size);
-		    setMinimumSize(size);
-		    setMaximumSize(size);
-		    setSize(size);
-		    setLayout(null);
-	 }
-	 public void paintComponent(Graphics g) {
-		    g.drawImage(img, 0, 0, null);
-		  }
+	private Image img;
+
+	public ImagePanel(Image img) {
+
+		this.img = img;
+		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+		setSize(size);
+		setLayout(null);
+	}
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(img, 0, 0, null);
+	}
 }
 ```
