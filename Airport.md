@@ -105,4 +105,3 @@ class ImagePanel extends JPanel {
 	}
 }
 ```
-![](imagenes/pag_principal.png)
